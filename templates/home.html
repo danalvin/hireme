@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+
+    
+
+    <section class="bg-light-gray">
+        <div class="container">
+            <h3 class="heading">Featured Events</h3>
+            <div class="row featured align-items-stretch">
+                {% for event in events %}
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="box-image-text bg-visible full-height">
+                            <div class="top">
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="{% static 'img/featured1.jpg' %}" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="bg"></div>
+                                    <div class="logo">
+                                        <img src="{% static 'img/company-1.png' %}" alt="" style="max-width: 80px;">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h5>{{ event.name }}</a></h5>
+                                <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
+                                    {{ event.location }}
+                                    {% if event.event_size == '1' %}
+                                        <span class="badge featured-badge badge-success">0 - 50 People</span>
+                                    {% elif event.event_size == '2' %}
+                                        <span class="badge featured-badge badge-primary">50 - 100 People</span>
+                                    {% elif event.event_size == '3' %}
+                                        <span class="badge featured-badge badge-primary">100 - 200 People</span>
+                                    {% else %}
+                                        <span style="color: #ffffff;" class="badge featured-badge badge-warning">200+</span>
+                                    {% endif %}
+                                </p>
+                                <p>{{ event.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section style="background-image: url({% static 'img/startup.jpg' %}); " class="section-divider">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Apply for an Event now! </p>
+                    <p><a href="/events" class="btn btn-outline-light">See The live Events we cater for </a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
